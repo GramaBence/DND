@@ -1,0 +1,421 @@
+/* ==========================================================================
+   Advanced D&D Game Stylesheet (style.css)
+   ========================================================================== */
+
+:root {
+    --bg-dark: #07090e;
+    --panel-bg: #111622;
+    --panel-border: #232d42;
+    --accent-gold: #fbbf24;
+    --accent-red: #ef4444;
+    --accent-blue: #3b82f6;
+    --accent-green: #10b981;
+    --accent-purple: #a855f7;
+    --text-primary: #f8fafc;
+    --text-muted: #94a3b8;
+    --font-heading: 'Cinzel', serif;
+    --font-body: 'MedievalSharp', cursive, Georgia, serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header */
+.game-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem 2rem;
+    background-color: var(--panel-bg);
+    border-bottom: 2px solid var(--panel-border);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.logo h1 {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    letter-spacing: 1px;
+}
+
+.sub-title {
+    font-size: 0.8rem;
+    color: var(--accent-blue);
+    vertical-align: super;
+}
+
+.accent {
+    color: var(--accent-gold);
+}
+
+.badge {
+    background-color: #1e293b;
+    border: 1px solid var(--accent-gold);
+    color: var(--accent-gold);
+    padding: 0.25rem 0.6rem;
+    border-radius: 20px;
+    font-family: var(--font-heading);
+    font-size: 0.8rem;
+    margin-left: 0.3rem;
+}
+
+.badge-xp {
+    border-color: var(--accent-purple);
+    color: var(--accent-purple);
+}
+
+/* Layout Grid */
+.game-container {
+    display: grid;
+    grid-template-columns: 300px 1fr 310px;
+    gap: 1rem;
+    padding: 1.25rem;
+    flex: 1;
+    max-width: 1450px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+@media (max-width: 1080px) {
+    .game-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+.panel {
+    background-color: var(--panel-bg);
+    border: 1px solid var(--panel-border);
+    border-radius: 12px;
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+}
+
+.panel-title {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    color: var(--accent-gold);
+    border-bottom: 1px solid var(--panel-border);
+    padding-bottom: 0.4rem;
+    margin-bottom: 0.8rem;
+}
+
+/* Sidebar Stats & Hero Sheet */
+.input-select {
+    width: 100%;
+    padding: 0.5rem;
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    border: 1px solid var(--panel-border);
+    border-radius: 6px;
+    margin-bottom: 0.8rem;
+    font-family: var(--font-body);
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.6rem;
+    margin-bottom: 0.8rem;
+}
+
+.stat-card {
+    background: var(--bg-dark);
+    padding: 0.6rem;
+    border-radius: 8px;
+    border: 1px solid var(--panel-border);
+    text-align: center;
+}
+
+.stat-label {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    display: block;
+}
+
+.stat-value {
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--accent-gold);
+}
+
+.bar-bg {
+    width: 100%;
+    height: 7px;
+    background-color: #1e293b;
+    border-radius: 4px;
+    margin: 0.3rem 0;
+    overflow: hidden;
+}
+
+.bar {
+    height: 100%;
+    transition: width 0.3s ease;
+}
+
+.hp-bar { background-color: var(--accent-green); }
+.mp-bar { background-color: var(--accent-blue); }
+.enemy-bar { background-color: var(--accent-red); }
+
+.attributes-list ul {
+    list-style: none;
+    background: var(--bg-dark);
+    padding: 0.6rem;
+    border-radius: 8px;
+    border: 1px solid var(--panel-border);
+    margin-bottom: 0.8rem;
+}
+
+.attributes-list li {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    padding: 0.15rem 0;
+}
+
+.inventory-list {
+    list-style: none;
+    font-size: 0.85rem;
+    max-height: 130px;
+    overflow-y: auto;
+}
+
+.inventory-list li {
+    padding: 0.35rem 0.5rem;
+    background: var(--bg-dark);
+    border-radius: 6px;
+    margin-top: 0.3rem;
+    border: 1px solid var(--panel-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn-use {
+    background: var(--accent-blue);
+    border: none;
+    color: white;
+    padding: 0.1rem 0.4rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+/* Scene Banner */
+.scene-banner {
+    height: 90px;
+    border-radius: 8px;
+    margin-bottom: 0.8rem;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    border: 1px solid var(--panel-border);
+    display: flex;
+    align-items: flex-end;
+}
+
+.scene-crypt { background: linear-gradient(180deg, rgba(17,22,34,0.2) 0%, rgba(7,9,14,0.95) 100%), #1e293b; }
+.scene-vault { background: linear-gradient(180deg, rgba(251,191,36,0.15) 0%, rgba(7,9,14,0.95) 100%), #332600; }
+.scene-battle { background: linear-gradient(180deg, rgba(239,68,68,0.2) 0%, rgba(7,9,14,0.95) 100%), #3f0e0e; }
+
+.scene-overlay {
+    padding: 0.5rem 0.8rem;
+}
+
+.scene-overlay h3 {
+    font-family: var(--font-heading);
+    color: var(--accent-gold);
+    font-size: 1.1rem;
+}
+
+/* Enemy Panel */
+.enemy-panel {
+    background: #200b0b;
+    border: 1px solid var(--accent-red);
+    padding: 0.6rem 0.8rem;
+    border-radius: 8px;
+    margin-bottom: 0.8rem;
+}
+
+.enemy-panel.hidden { display: none; }
+
+.enemy-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    font-weight: bold;
+    color: var(--accent-red);
+    margin-bottom: 0.2rem;
+}
+
+/* Story Panel Log */
+.story-panel {
+    display: flex;
+    flex-direction: column;
+}
+
+.story-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.6rem;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.story-log {
+    flex: 1;
+    background-color: var(--bg-dark);
+    border: 1px solid var(--panel-border);
+    border-radius: 8px;
+    padding: 1rem;
+    overflow-y: auto;
+    max-height: 320px;
+    margin-bottom: 0.8rem;
+}
+
+.story-p {
+    margin-bottom: 0.8rem;
+    line-height: 1.6;
+    font-size: 1rem;
+}
+
+.choice-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+}
+
+/* Buttons */
+.btn {
+    padding: 0.65rem 1rem;
+    border: 1px solid var(--panel-border);
+    background-color: var(--panel-bg);
+    color: var(--text-primary);
+    border-radius: 8px;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: left;
+}
+
+.btn:hover {
+    border-color: var(--accent-gold);
+    background-color: #1c2436;
+    transform: translateY(-2px);
+}
+
+.btn-primary {
+    background-color: var(--accent-gold);
+    color: #000;
+    font-weight: bold;
+    text-align: center;
+}
+
+.btn-primary:hover {
+    background-color: #d97706;
+}
+
+/* Dice & Console */
+.dice-box {
+    text-align: center;
+    background: var(--bg-dark);
+    padding: 0.8rem;
+    border-radius: 8px;
+    border: 1px solid var(--panel-border);
+    margin-bottom: 0.8rem;
+}
+
+.dice-graphic {
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    color: var(--accent-gold);
+    font-weight: bold;
+    margin: 0.3rem auto;
+    width: 75px;
+    height: 75px;
+    line-height: 75px;
+    border: 2px dashed var(--accent-gold);
+    border-radius: 50%;
+    transition: transform 0.4s ease, border-color 0.3s;
+    user-select: none;
+    cursor: pointer;
+}
+
+.dice-graphic.rolling {
+    transform: rotate(360deg) scale(1.15);
+    border-color: var(--accent-red);
+}
+
+.roll-subtext {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+}
+
+.dice-controls {
+    display: flex;
+    gap: 0.25rem;
+    justify-content: center;
+}
+
+.btn-dice {
+    padding: 0.3rem 0.5rem;
+    font-size: 0.75rem;
+    text-align: center;
+}
+
+.btn-dice.active {
+    border-color: var(--accent-gold);
+    color: var(--accent-gold);
+}
+
+.combat-log-wrapper {
+    flex: 1;
+}
+
+.combat-log {
+    list-style: none;
+    max-height: 190px;
+    overflow-y: auto;
+    background: var(--bg-dark);
+    padding: 0.6rem;
+    border-radius: 8px;
+    border: 1px solid var(--panel-border);
+    font-size: 0.8rem;
+}
+
+.log-entry {
+    padding: 0.25rem 0;
+    border-bottom: 1px solid #1a2233;
+}
+
+.log-entry.success { color: var(--accent-green); }
+.log-entry.danger { color: var(--accent-red); }
+.log-entry.info { color: var(--accent-blue); }
+.log-entry.xp { color: var(--accent-purple); }
+
+.game-footer {
+    text-align: center;
+    padding: 0.8rem;
+    border-top: 1px solid var(--panel-border);
+    color: var(--text-muted);
+    font-size: 0.75rem;
+}

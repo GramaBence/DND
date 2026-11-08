@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shadow of the Iron Citadel - Expanded D&D Quest</title>
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=MedievalSharp&display=swap" rel="stylesheet">
+</head>
+<body class="theme-dark">
+
+    <header class="game-header">
+        <div class="logo">
+            <span class="logo-icon">🐉</span>
+            <h1>SHADOW OF THE <span class="accent">IRON CITADEL</span> <span class="sub-title">v2.0</span></h1>
+        </div>
+        <div class="header-status">
+            <span id="playerClassBadge" class="badge">Rogue</span>
+            <span id="playerLvlBadge" class="badge">Lvl 1</span>
+            <span id="xpText" class="badge badge-xp">XP: 0 / 100</span>
+        </div>
+    </header>
+
+    <main class="game-container">
+        <!-- Left Panel: Character Sheet & Stats -->
+        <aside class="panel sidebar">
+            <h2 class="panel-title">🛡️ Hero Sheet</h2>
+            
+            <div class="character-select">
+                <label for="heroClass">Class & Background:</label>
+                <select id="heroClass" class="input-select">
+                    <option value="rogue">Shadow Rogue (High DEX, Stealth)</option>
+                    <option value="paladin">Sun Oath Paladin (High STR/AC, Heavy)</option>
+                    <option value="wizard">Arcane Scholar (High INT, Spells)</option>
+                    <option value="barbarian">Wild Berserker (High STR/HP, Rage)</option>
+                </select>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-label">HEALTH</span>
+                    <div class="bar-bg"><div id="hpBar" class="bar hp-bar" style="width: 100%;"></div></div>
+                    <span id="hpText" class="stat-value">20 / 20</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-label">MANA / RAGE</span>
+                    <div class="bar-bg"><div id="mpBar" class="bar mp-bar" style="width: 100%;"></div></div>
+                    <span id="mpText" class="stat-value">10 / 10</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-label">ARMOR CLASS</span>
+                    <span id="acVal" class="stat-value">14</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-label">GOLD</span>
+                    <span id="goldVal" class="stat-value">🪙 25</span>
+                </div>
+            </div>
+
+            <div class="attributes-list">
+                <h3>Attributes</h3>
+                <ul>
+                    <li><span>STR:</span> <strong id="strVal">10 (+0)</strong></li>
+                    <li><span>DEX:</span> <strong id="dexVal">16 (+3)</strong></li>
+                    <li><span>INT:</span> <strong id="intVal">12 (+1)</strong></li>
+                    <li><span>WIS:</span> <strong id="wisVal">13 (+1)</strong></li>
+                </ul>
+            </div>
+
+            <div class="inventory-section">
+                <h3>🎒 Inventory & Equipment</h3>
+                <ul id="inventoryList" class="inventory-list">
+                    <!-- Dynamic -->
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Main Middle Panel: Story, Visual Scene & Encounters -->
+        <section class="panel story-panel">
+            <div class="story-header">
+                <span id="locationBadge" class="location-badge">📍 Location: Citadel Crypts</span>
+                <span id="turnCounter" class="turn-badge">Turn: 1</span>
+            </div>
+
+            <!-- Dynamic Atmospheric Banner -->
+            <div id="sceneDisplay" class="scene-banner scene-crypt">
+                <div class="scene-overlay">
+                    <h3 id="sceneTitle">The Damp Crypts</h3>
+                </div>
+            </div>
+
+            <!-- Live Enemy Status (When in Battle) -->
+            <div id="enemyPanel" class="enemy-panel hidden">
+                <div class="enemy-info">
+                    <span id="enemyName" class="enemy-name">Skeletal Sentinel</span>
+                    <span id="enemyHpText" class="enemy-hp">HP: 15 / 15</span>
+                </div>
+                <div class="bar-bg"><div id="enemyHpBar" class="bar enemy-bar" style="width: 100%;"></div></div>
+            </div>
+
+            <div id="storyLog" class="story-log">
+                <p class="story-p intro">The heavy iron-reinforced doors of the Citadel slam shut behind you. Cold moisture trickles down the ancient stone blocks. Shadows twist under flickering torches.</p>
+            </div>
+
+            <div id="choiceContainer" class="choice-container">
+                <!-- Action Buttons rendered dynamically -->
+            </div>
+        </section>
+
+        <!-- Right Panel: Interactive 3D/CSS Dice Roller & Combat Console -->
+        <aside class="panel dice-panel">
+            <h2 class="panel-title">🎲 Fate & Combat Console</h2>
+
+            <div class="dice-box">
+                <div id="diceVisual" class="dice-graphic d20-shape">20</div>
+                <div id="rollModifierText" class="roll-subtext">Click dice or button below</div>
+                
+                <div class="dice-controls">
+                    <button class="btn btn-dice" data-sides="4">D4</button>
+                    <button class="btn btn-dice" data-sides="6">D6</button>
+                    <button class="btn btn-dice" data-sides="8">D8</button>
+                    <button class="btn btn-dice" data-sides="12">D12</button>
+                    <button class="btn btn-dice active" data-sides="20">D20</button>
+                </div>
+                <button id="manualRollBtn" class="btn btn-primary btn-block mt-2">Roll D20 Skill Check</button>
+            </div>
+
+            <div class="combat-log-wrapper">
+                <h3>📜 Adventure & Dice Log</h3>
+                <ul id="combatLog" class="combat-log">
+                    <li class="log-entry info">Engine expanded. Combat system, spells, XP leveling, loot shop ready.</li>
+                </ul>
+            </div>
+        </aside>
+    </main>
+
+    <footer class="game-footer">
+        <p>Aetheria D&D RPG Engine v2.0 • Advanced Text, Combat & Spellcasting Module</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
